@@ -1,4 +1,13 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, ValidationPipe } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+  ValidationPipe,
+} from '@nestjs/common';
 import { JobsService } from './jobs.service';
 import { CreateJobDto } from './dto/create-job.dto';
 
@@ -20,7 +29,7 @@ export class JobsController {
   createJob(@Body(ValidationPipe) createJobDto: CreateJobDto) {
     return this.jobsService.createJob(createJobDto);
   }
-  
+
   @Delete('/:id')
   deleteJob(@Param('id', ParseIntPipe) id: number) {
     return this.jobsService.deleteJob(id);

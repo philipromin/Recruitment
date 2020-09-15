@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { JobsController } from './jobs.controller';
-import { JobsService } from './jobs.service';
+import { ApplicationsController } from './applications.controller';
+import { ApplicationsService } from './applications.service';
 
 @Module({
   imports: [
     ClientsModule.register([
       {
-        name: 'JOBS_SERVICE',
+        name: 'APPLICATIONS_SERVICE',
         transport: Transport.NATS,
         options: {
           url: process.env.NATS_URL,
@@ -15,7 +15,7 @@ import { JobsService } from './jobs.service';
       },
     ]),
   ],
-  controllers: [JobsController],
-  providers: [JobsService],
+  controllers: [ApplicationsController],
+  providers: [ApplicationsService],
 })
-export class JobsModule {}
+export class ApplicationsModule {}
