@@ -1,6 +1,6 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { InjectModel,  } from '@nestjs/mongoose';
+import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateJobDto } from './dto/create-job.dto';
 import { Job } from './schemas/job.schema';
@@ -12,7 +12,7 @@ export class JobsService {
     @InjectModel(Job.name) private jobModel: Model<Job>
   ) {}
   
-  deleteJob(id: number) {
+  deleteJob(id: string) {
     return `Deleting job with id ${id}`;
   }
 
@@ -25,6 +25,9 @@ export class JobsService {
 
   async getJobById(id: string): Promise<Job> {
     const job = await this.jobModel.findById(id).exec()
+
+    if(!job) throw new NotFoundException(`Job with ID ${id} not found!`)
+
     return job
   }
 
