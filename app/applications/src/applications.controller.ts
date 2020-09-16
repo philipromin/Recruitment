@@ -1,5 +1,18 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post, ValidationPipe } from '@nestjs/common';
-import { Ctx, MessagePattern, NatsContext, Payload } from '@nestjs/microservices';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+  ValidationPipe,
+} from '@nestjs/common';
+import {
+  Ctx,
+  MessagePattern,
+  NatsContext,
+  Payload,
+} from '@nestjs/microservices';
 import { ApplicationsService } from './applications.service';
 import { CreateApplicationDto } from './dto/create-application.dto';
 
@@ -24,8 +37,8 @@ export class ApplicationsController {
 
   @MessagePattern('job_created')
   getNotifications(@Payload() data: any, @Ctx() context: NatsContext) {
-    console.log('JOB CREATED EVENT')
-    console.log(data)
+    console.log('JOB CREATED EVENT');
+    console.log(data);
     console.log(`Subject: ${context.getSubject()}`);
   }
 }

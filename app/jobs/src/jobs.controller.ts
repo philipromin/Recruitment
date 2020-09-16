@@ -1,5 +1,4 @@
 import {
-  BadRequestException,
   Body,
   Controller,
   Delete,
@@ -11,8 +10,7 @@ import {
 import { JobsService } from './jobs.service';
 import { CreateJobDto } from './dto/create-job.dto';
 import { Job } from './schemas/job.schema';
-import { isValidObjectId } from 'mongoose';
-import { ObjectId } from 'mongodb'
+import { ObjectId } from 'mongodb';
 import { ParseObjectIdPipe } from './pipes/ParseObjectIdPipe';
 
 @Controller('/api/jobs')

@@ -17,7 +17,7 @@ import { Job, JobSchema } from './schemas/job.schema';
       },
     ]),
     MongooseModule.forRoot('mongodb://jobs-mongo-srv:27017/jobs'),
-    MongooseModule.forFeature([{ name: Job.name, schema: JobSchema }])
+    MongooseModule.forFeature([{ name: Job.name, schema: JobSchema }]),
   ],
   controllers: [JobsController],
   providers: [JobsService],
