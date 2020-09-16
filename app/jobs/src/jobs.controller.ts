@@ -5,7 +5,6 @@ import {
   Delete,
   Get,
   Param,
-  ParseIntPipe,
   Post,
   ValidationPipe,
 } from '@nestjs/common';
@@ -13,6 +12,8 @@ import { JobsService } from './jobs.service';
 import { CreateJobDto } from './dto/create-job.dto';
 import { Job } from './schemas/job.schema';
 import { isValidObjectId } from 'mongoose';
+import { ObjectId } from 'mongodb'
+import { ParseObjectIdPipe } from './pipes/ParseObjectIdPipe';
 
 @Controller('/api/jobs')
 export class JobsController {
@@ -24,10 +25,7 @@ export class JobsController {
   }
 
   @Get('/:id')
-  getJobById(@Param('id') id: string): Promise<Job> {
-    //Make this in to a pipe later
-    if(!isValidObjectId(id)) throw new BadRequestException(`${id} is not a valid ObjectId`)
-
+  getJobById(@Param('id', ParseObjectIdPipe) id: ObjectId): Promise<Job> {
     return this.jobsService.getJobById(id);
   }
 
@@ -37,10 +35,7 @@ export class JobsController {
   }
 
   @Delete('/:id')
-  deleteJob(@Param('id') id: string) {
-    //Make this in to a pipe later
-    if(!isValidObjectId(id)) throw new BadRequestException(`${id} is not a valid ObjectId`)
-
+  deleteJob(@Param('id', ParseObjectIdPipe) id: ObjectId) {
     return this.jobsService.deleteJob(id);
   }
 }

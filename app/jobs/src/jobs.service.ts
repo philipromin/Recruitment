@@ -2,6 +2,7 @@ import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { ObjectId } from 'mongodb'
 import { CreateJobDto } from './dto/create-job.dto';
 import { Job } from './schemas/job.schema';
 
@@ -12,23 +13,26 @@ export class JobsService {
     @InjectModel(Job.name) private jobModel: Model<Job>
   ) {}
   
-  deleteJob(id: string) {
-    return `Deleting job with id ${id}`;
+  deleteJob(id: ObjectId) {
+    return this.jobModel.findOneAndDelete( {_id: id});
   }
 
   async createJob(createJobDto: CreateJobDto) {
     const createdJob = new this.jobModel(createJobDto)
-    createdJob.userId = 1245;
+    createdJob.set({
+      userId:123
+    })
     this.natsClient.emit<string>('job_created', createdJob)
+    //Change so it saves before emitting NATS event
     return createdJob.save();
   }
 
-  async getJobById(id: string): Promise<Job> {
+  async getJobById(id: ObjectId): Promise<Job> {
     const job = await this.jobModel.findById(id).exec()
 
     if(!job) throw new NotFoundException(`Job with ID ${id} not found!`)
 
-    return job
+    return job;
   }
 
   async getAllJobs(): Promise<Job[]> {
