@@ -1,8 +1,10 @@
-import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsMongoId, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { ObjectId } from 'mongodb';
 
 export class CreateApplicationDto {
   @IsNotEmpty()
-  jobId: number;
+  @IsMongoId()
+  jobId: ObjectId;
 
   @IsOptional()
   @IsString()
