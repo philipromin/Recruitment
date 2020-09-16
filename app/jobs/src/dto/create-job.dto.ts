@@ -1,4 +1,4 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsOptional } from 'class-validator';
 
 export class CreateJobDto {
   @IsNotEmpty()
@@ -7,6 +7,6 @@ export class CreateJobDto {
   @IsNotEmpty()
   description: string;
 
-  @IsNotEmpty()
-  requirements: string;
+  @IsOptional()
+  requirements: Array<string>;
 }

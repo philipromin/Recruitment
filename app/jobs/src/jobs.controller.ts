@@ -6,22 +6,25 @@ import {
   Param,
   ParseIntPipe,
   Post,
+  UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
 import { JobsService } from './jobs.service';
 import { CreateJobDto } from './dto/create-job.dto';
+import { Job } from './schemas/job.schema';
+import { GetByIdDto } from './dto/get-by-id.dto';
 
 @Controller('/api/jobs')
 export class JobsController {
   constructor(private readonly jobsService: JobsService) {}
 
   @Get()
-  getHello(): string {
+  getHello(): Promise<Job[]> {
     return this.jobsService.getAllJobs();
   }
 
   @Get('/:id')
-  getJobById(@Param('id', ParseIntPipe) id: number): string {
+  getJobById(@Param('id') id: string): Promise<Job> {
     return this.jobsService.getJobById(id);
   }
 
