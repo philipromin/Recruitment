@@ -20,7 +20,7 @@ export class JobsService {
   async createJob(createJobDto: CreateJobDto) {
     const createdJob = new this.jobModel(createJobDto);
     createdJob.set({
-      userId: 123,
+      recruiterId: 123,
     });
     const savedJob = await createdJob.save();
     this.natsClient.emit<string>('job_created', savedJob);

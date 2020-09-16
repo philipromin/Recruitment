@@ -17,7 +17,7 @@ export class Job extends Document {
   description: string;
 
   @Prop({ required: true })
-  userId: number;
+  recruiterId: number;
 
   @Prop([String])
   requirements: string[];

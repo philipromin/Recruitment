@@ -4,6 +4,7 @@ import {
   Get,
   Param,
   ParseIntPipe,
+  Patch,
   Post,
   ValidationPipe,
 } from '@nestjs/common';
@@ -13,8 +14,12 @@ import {
   NatsContext,
   Payload,
 } from '@nestjs/microservices';
+import { ObjectId } from 'mongodb';
 import { ApplicationsService } from './applications.service';
 import { CreateApplicationDto } from './dto/create-application.dto';
+import { ApplicationStatus } from './enums/application-status.enum';
+import { ApplicationStatusValidationPipe } from './pipes/ApplicationStatusValidationPipe';
+import { ParseObjectIdPipe } from './pipes/ParseObjectIdPipe';
 
 @Controller('/api/applications')
 export class ApplicationsController {
@@ -33,6 +38,14 @@ export class ApplicationsController {
   @Post()
   createApplication(@Body(ValidationPipe) createJobDto: CreateApplicationDto) {
     return this.applicationsService.createApplication(createJobDto);
+  }
+
+  @Patch('/:id/status')
+  updateApplicationStatus(
+    @Param('id', ParseObjectIdPipe) id: ObjectId,
+    @Body('status', ApplicationStatusValidationPipe) status: ApplicationStatus,
+  ) {
+    return this.applicationsService.updateTodoStatus(id, status);
   }
 
   @MessagePattern('job_created')
