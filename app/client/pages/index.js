@@ -1,5 +1,13 @@
+import { Header, Footer } from 'components';
+
 const Index = () => {
-  return <div>Index page</div>;
+  return (
+    <>
+      <Header />
+      <div>BODY</div>
+      <Footer />
+    </>
+  );
 };
 
 export default Index;
