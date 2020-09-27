@@ -2,9 +2,9 @@ import { Footer, Header } from 'components';
 
 const Layout = ({ children }) => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex-1">{children}</main>
+      <main className="flex-1 bg-recruitment-light-gray">{children}</main>
       <Footer />
     </div>
   );
