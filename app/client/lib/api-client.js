@@ -1,9 +1,10 @@
 import axios from 'axios';
 
-export default ({ req }) => {
+const buildClient = ({ req }) => {
   if (typeof window === 'undefined') {
     return axios.create({
-      baseURL: 'http://172-17-0-2.kubernetes.default.svc.cluster.local',
+      baseURL:
+        'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local',
       headers: req.headers,
     });
   } else {
@@ -12,3 +13,5 @@ export default ({ req }) => {
     });
   }
 };
+
+export default buildClient;

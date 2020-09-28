@@ -1,4 +1,4 @@
-const JobsPage = () => {
+const JobsPage = ({ currentUser }) => {
   return <div></div>;
 };
 
