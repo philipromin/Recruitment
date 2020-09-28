@@ -6,7 +6,7 @@ import { faYandex } from '@fortawesome/free-brands-svg-icons';
 const Header = () => {
   return (
     <header className="flex items-center justify-between w-screen h-20 px-20 py-4">
-      <Link href="/">
+      <Link href="/jobs">
         <a>
           <FontAwesomeIcon icon={faYandex} size="3x" color="#0058A2" />
         </a>

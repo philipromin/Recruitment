@@ -5,9 +5,9 @@ import { faYandex } from '@fortawesome/free-brands-svg-icons';
 
 const Footer = () => {
   return (
-    <footer className="flex flex-row justify-between h-48 px-20 py-10 bg-recruitment-blue">
-      <Link href="/">
-        <a>
+    <footer className="flex flex-col justify-between px-20 py-10 md:flex-row bg-recruitment-blue">
+      <Link href="/jobs">
+        <a className="mb-4">
           <FontAwesomeIcon icon={faYandex} size="3x" color="white" />
         </a>
       </Link>
@@ -17,7 +17,7 @@ const Footer = () => {
           <hr />
           <li>About Us</li>
           <li>FAQ</li>
-          <li>XX</li>
+          <li>Jobs</li>
         </ul>
         <ul className="w-32">
           <li>Inquires </li>
