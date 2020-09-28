@@ -24,6 +24,30 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    - image: phromin/auth
+      context: ../app/auth
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+    - image: phromin/users
+      context: ../app/users
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+    - image: phromin/notifications
+      context: ../app/notifications
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
     - image: phromin/client
       context: ../app/client
       docker:

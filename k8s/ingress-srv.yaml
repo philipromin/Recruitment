@@ -18,6 +18,14 @@ spec:
             backend:
               serviceName: applications-srv
               servicePort: 3000
+          - path: /api/auth
+            backend:
+              serviceName: auth-srv
+              servicePort: 3000
+          - path: /api/users
+            backend:
+              serviceName: users-srv
+              servicePort: 3000
           - path: /?(.*)
             backend:
               serviceName: client-srv
