@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: ingress-srv
@@ -29,4 +29,23 @@ spec:
           - path: /?(.*)
             backend:
               serviceName: client-srv
+              servicePort: 3000
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-srv-with-auth
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: 'true'
+    nginx.ingress.kubernetes.io/auth-url: http://auth-srv.default.svc.cluster.local:3000/api/users/authenticate
+    nginx.ingress.kubernetes.io/auth-response-headers: user-id, user-role
+spec:
+  rules:
+    - host: recruitment.dev
+      http:
+        paths:
+          - path: /api/jobs
+            backend:
+              serviceName: jobs-srv
               servicePort: 3000

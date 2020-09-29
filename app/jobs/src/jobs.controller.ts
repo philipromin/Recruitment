@@ -5,7 +5,9 @@ import {
   Get,
   Param,
   Post,
+  Req,
   ValidationPipe,
+  Request,
 } from '@nestjs/common';
 import { JobsService } from './jobs.service';
 import { CreateJobDto } from './dto/create-job.dto';
@@ -28,7 +30,12 @@ export class JobsController {
   }
 
   @Post()
-  createJob(@Body(ValidationPipe) createJobDto: CreateJobDto) {
+  createJob(
+    @Body(ValidationPipe) createJobDto: CreateJobDto,
+    @Req() request: Request,
+  ) {
+    console.log(request.headers['user-id']);
+    console.log(request.headers['user-role']);
     return this.jobsService.createJob(createJobDto);
   }
 

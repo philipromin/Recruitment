@@ -64,8 +64,5 @@ export class ApplicationsController {
     const createdJob = new this.jobModel(data);
     createdJob._id = data.id;
     await createdJob.save();
-    console.log('JOB CREATED EVENT');
-    console.log(data);
-    console.log(`Subject: ${context.getSubject()}`);
   }
 }
