@@ -1,5 +1,11 @@
+import { JobGallery } from 'components';
+
 const JobsPage = ({ currentUser }) => {
-  return <div></div>;
+  return (
+    <div>
+      <JobGallery />
+    </div>
+  );
 };
 
 export default JobsPage;

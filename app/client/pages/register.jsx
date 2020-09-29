@@ -1,8 +1,32 @@
+import Router from 'next/router';
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
 
 const RegisterPage = () => {
-  const { register, handleSubmit, watch, errors } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const {
+    register,
+    handleSubmit,
+    watch,
+    errors,
+    setError,
+    clearErrors,
+  } = useForm();
+  const onSubmit = async ({ email, password, role }) => {
+    try {
+      const response = await axios.post('/api/users/signup', {
+        email,
+        password,
+        role,
+      });
+      Router.push('/jobs');
+    } catch (error) {
+      setError('manual', {
+        type: 'manual',
+        message: 'Registration failed',
+      });
+      console.error(error);
+    }
+  };
 
   return (
     <form
@@ -12,6 +36,7 @@ const RegisterPage = () => {
       <p className="my-4 text-xl font-semibold text-center text-recruitment-black">
         Welcome to Rekryt
       </p>
+      {errors.manual && <p className="text-red-600">{errors.manual.message}</p>}
       <input
         className="p-4 rounded-sm"
         name="email"
@@ -49,6 +74,7 @@ const RegisterPage = () => {
       )}
       <button
         type="submit"
+        onClick={() => clearErrors('manual')}
         className="p-4 font-semibold text-white rounded-lg bg-recruitment-yellow"
       >
         Sign up

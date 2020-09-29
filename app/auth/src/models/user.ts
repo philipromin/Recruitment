@@ -1,9 +1,15 @@
 import mongoose from 'mongoose';
 import { Password } from '../lib/password';
 
+enum role {
+  applicant = 'applicant',
+  recruiter = 'recruiter',
+}
+
 interface UserAttributes {
   email: string;
   password: string;
+  role: role;
 }
 
 interface UserModel extends mongoose.Model<UserDocument> {
@@ -13,6 +19,7 @@ interface UserModel extends mongoose.Model<UserDocument> {
 interface UserDocument extends mongoose.Document {
   email: string;
   password: string;
+  role: role;
 }
 
 const userSchema = new mongoose.Schema(
@@ -23,6 +30,11 @@ const userSchema = new mongoose.Schema(
     },
     password: {
       type: String,
+      required: true,
+    },
+    role: {
+      type: String,
+      enum: ['applicant', 'recruiter'],
       required: true,
     },
   },

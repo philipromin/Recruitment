@@ -11,20 +11,22 @@ const Header = ({ currentUser }) => {
           <FontAwesomeIcon icon={faYandex} size="3x" color="#0058A2" />
         </a>
       </Link>
-      {!currentUser ? (
-        <div className="flex flex-row gap-2 font-semibold text-recruitment-black">
-          <Link href="/login">
-            <a className="hover:text-recruitment-blue">Sign in </a>
+      <div className="flex flex-row gap-2 font-semibold text-recruitment-black">
+        {!currentUser ? (
+          <>
+            <Link href="/login">
+              <a className="hover:text-recruitment-blue">Sign in </a>
+            </Link>
+            <Link href="/register">
+              <a className="hover:text-recruitment-blue">Sign up </a>
+            </Link>
+          </>
+        ) : (
+          <Link href="/logout">
+            <a className="hover:text-recruitment-blue">Sign out </a>
           </Link>
-          <Link href="/register">
-            <a className="hover:text-recruitment-blue">Sign up </a>
-          </Link>
-        </div>
-      ) : (
-        <Link href="/logout">
-          <a className="hover:text-recruitment-blue">Sign out </a>
-        </Link>
-      )}
+        )}
+      </div>
     </header>
   );
 };
