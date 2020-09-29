@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 
 const LoginPage = () => {
   const { register, handleSubmit, errors, setError, clearErrors } = useForm();
-  console.log(errors);
   const onSubmit = async ({ email, password }) => {
     try {
       const response = await axios.post('/api/users/signin', {
