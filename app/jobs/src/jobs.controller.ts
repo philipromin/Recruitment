@@ -8,6 +8,7 @@ import {
   Req,
   ValidationPipe,
   Request,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { JobsService } from './jobs.service';
 import { CreateJobDto } from './dto/create-job.dto';
@@ -34,13 +35,22 @@ export class JobsController {
     @Body(ValidationPipe) createJobDto: CreateJobDto,
     @Req() request: Request,
   ) {
-    console.log(request.headers['user-id']);
-    console.log(request.headers['user-role']);
+    if (request.headers['user-role'] !== 'recruiter')
+      throw new UnauthorizedException(
+        'Only recruiters can create job listings.',
+      );
     return this.jobsService.createJob(createJobDto);
   }
 
   @Delete('/:id')
-  deleteJob(@Param('id', ParseObjectIdPipe) id: ObjectId) {
+  deleteJob(
+    @Param('id', ParseObjectIdPipe) id: ObjectId,
+    @Req() request: Request,
+  ) {
+    if (request.headers['user-role'] !== 'recruiter')
+      throw new UnauthorizedException(
+        'Only recruiters can create delete jobs.',
+      );
     return this.jobsService.deleteJob(id);
   }
 }
