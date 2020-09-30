@@ -14,17 +14,9 @@ spec:
             backend:
               serviceName: jobs-srv
               servicePort: 3000
-          - path: /api/applications
-            backend:
-              serviceName: applications-srv
-              servicePort: 3000
           - path: /api/users/?(.*)
             backend:
               serviceName: auth-srv
-              servicePort: 3000
-          - path: /api/users
-            backend:
-              serviceName: users-srv
               servicePort: 3000
           - path: /?(.*)
             backend:
@@ -45,7 +37,11 @@ spec:
     - host: recruitment.dev
       http:
         paths:
-          - path: /api/jobs
+          - path: /api/jobs/create
             backend:
               serviceName: jobs-srv
+              servicePort: 3000
+          - path: /api/applications
+            backend:
+              serviceName: applications-srv
               servicePort: 3000

@@ -32,14 +32,6 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: phromin/users
-      context: ../app/users
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: 'src/**/*.ts'
-            dest: .
     - image: phromin/notifications
       context: ../app/notifications
       docker:

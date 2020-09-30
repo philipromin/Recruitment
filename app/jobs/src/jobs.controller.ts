@@ -29,7 +29,7 @@ export class JobsController {
     return this.jobsService.getJobById(id);
   }
 
-  @Post()
+  @Post('/create')
   createJob(
     @Body(ValidationPipe) createJobDto: CreateJobDto,
     @Req() request: Request,

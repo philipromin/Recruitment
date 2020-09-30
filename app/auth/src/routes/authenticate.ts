@@ -18,7 +18,6 @@ declare global {
 const router = express.Router();
 
 router.get('/api/users/authenticate', (req, res) => {
-  console.log('called');
   if (!req.session?.jwt) {
     return res.status(401).send();
   }
