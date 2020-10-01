@@ -16,6 +16,9 @@ export class Job extends Document {
 
   @Prop({ required: true })
   recruiterId: ObjectId;
+
+  @Prop({ required: true })
+  _id: ObjectId;
 }
 
 export const JobSchema = SchemaFactory.createForClass(Job);

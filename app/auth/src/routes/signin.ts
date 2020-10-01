@@ -15,7 +15,6 @@ router.post(
       .withMessage('Please provide your password.'),
   ],
   async (req: Request, res: Response) => {
-    console.log(req.headers);
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {

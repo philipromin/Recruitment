@@ -3,8 +3,8 @@ import { ClientProxy } from '@nestjs/microservices';
 import { InjectModel } from '@nestjs/mongoose';
 import { ObjectId } from 'mongodb';
 import { Model } from 'mongoose';
-import { ApplicationsModule } from './applications.module';
 import { CreateApplicationDto } from './dto/create-application.dto';
+import { GetApplicationFilterDto } from './dto/get-application-filter.dto';
 import { ApplicationStatus } from './enums/application-status.enum';
 import { Application } from './schemas/application.schema';
 import { Job } from './schemas/job.schema';
@@ -17,7 +17,17 @@ export class ApplicationsService {
     @InjectModel(Job.name) private jobModel: Model<Job>,
   ) {}
 
-  async getApplications(userId: ObjectId): Promise<Application[]> {
+  async getApplications(
+    filterDto: GetApplicationFilterDto,
+    userId: ObjectId,
+    isRecruiter: boolean,
+  ): Promise<Application[]> {
+    const { job } = filterDto;
+
+    if (isRecruiter) {
+      return await this.applicationModel.find({ 'job._id': job });
+    }
+
     return await this.applicationModel.find({ userId: userId });
   }
 

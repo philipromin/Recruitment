@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   Req,
   Request,
   ValidationPipe,
@@ -16,6 +17,7 @@ import { ObjectId } from 'mongodb';
 import { Model } from 'mongoose';
 import { ApplicationsService } from './applications.service';
 import { CreateApplicationDto } from './dto/create-application.dto';
+import { GetApplicationFilterDto } from './dto/get-application-filter.dto';
 import { ApplicationStatus } from './enums/application-status.enum';
 import { ApplicationStatusValidationPipe } from './pipes/ApplicationStatusValidationPipe';
 import { ParseObjectIdPipe } from './pipes/ParseObjectIdPipe';
@@ -30,8 +32,16 @@ export class ApplicationsController {
   ) {}
 
   @Get()
-  getApplications(@Req() request: Request): Promise<Application[]> {
-    return this.applicationsService.getApplications(request.headers['user-id']);
+  getApplications(
+    @Query(ValidationPipe) filterDto: GetApplicationFilterDto,
+    @Req() request: Request,
+  ): Promise<Application[]> {
+    const isRecruiter = request.headers['user-role'] === 'recruiter';
+    return this.applicationsService.getApplications(
+      filterDto,
+      request.headers['user-id'],
+      isRecruiter,
+    );
   }
 
   @Get('/:id')

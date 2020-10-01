@@ -13,7 +13,9 @@ import { Job } from './job.schema';
   },
 })
 export class Application extends Document {
-  @Prop({ required: true })
+  @Prop({
+    type: Job,
+  })
   job: Job;
 
   @Prop({ required: true })
@@ -25,9 +27,6 @@ export class Application extends Document {
     default: ApplicationStatus.PENDING,
   })
   status: ApplicationStatus;
-
-  @Prop()
-  message: string;
 }
 
 export const ApplicationSchema = SchemaFactory.createForClass(Application);
