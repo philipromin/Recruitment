@@ -39,7 +39,8 @@ export class JobsController {
       throw new UnauthorizedException(
         'Only recruiters can create job listings.',
       );
-    return this.jobsService.createJob(createJobDto);
+    console.log(request.headers['user-id']);
+    return this.jobsService.createJob(createJobDto, request.headers['user-id']);
   }
 
   @Delete('/:id')

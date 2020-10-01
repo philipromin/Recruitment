@@ -24,6 +24,11 @@ spec:
                   fieldPath: metadata.name
             - name: NATS_URL
               value: 'http://nats-srv:4222'
+            - name: HOTMAIL_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: hotmail-password
+                  key: HOTMAIL_PASS
 ---
 apiVersion: v1
 kind: Service

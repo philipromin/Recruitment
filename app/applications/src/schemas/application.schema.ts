@@ -13,7 +13,7 @@ import { Job } from './job.schema';
   },
 })
 export class Application extends Document {
-  @Prop()
+  @Prop({ required: true })
   job: Job;
 
   @Prop({ required: true })

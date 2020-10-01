@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { ObjectId } from 'mongodb';
 
 @Schema({
   toJSON: {
@@ -17,7 +18,7 @@ export class Job extends Document {
   description: string;
 
   @Prop({ required: true })
-  recruiterId: number;
+  recruiterId: ObjectId;
 
   @Prop([String])
   requirements: string[];

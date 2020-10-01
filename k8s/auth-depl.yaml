@@ -16,14 +16,6 @@ spec:
         - name: auth
           image: phromin/auth
           env:
-            - name: NATS_CLUSTER_ID
-              value: 'recruitment'
-            - name: NATS_CLIENT_ID
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.name
-            - name: NATS_URL
-              value: 'http://nats-srv:4222'
             - name: JWT_KEY
               valueFrom:
                 secretKeyRef:

@@ -3,6 +3,7 @@ import { ClientProxy } from '@nestjs/microservices';
 import { InjectModel } from '@nestjs/mongoose';
 import { ObjectId } from 'mongodb';
 import { Model } from 'mongoose';
+import { ApplicationsModule } from './applications.module';
 import { CreateApplicationDto } from './dto/create-application.dto';
 import { ApplicationStatus } from './enums/application-status.enum';
 import { Application } from './schemas/application.schema';
@@ -16,31 +17,34 @@ export class ApplicationsService {
     @InjectModel(Job.name) private jobModel: Model<Job>,
   ) {}
 
-  getApplications(): string {
-    throw new Error('Method not implemented in application service.');
+  async getApplications(userId: ObjectId): Promise<Application[]> {
+    return await this.applicationModel.find({ userId: userId });
   }
 
-  getApplicationById(id: ObjectId): string {
-    throw new Error('Method not implemented.');
+  async getApplicationById(id: ObjectId): Promise<Application> {
+    const application = await this.applicationModel.findById(id).exec();
+
+    if (!application)
+      throw new NotFoundException(`Job with ID ${id} not found!`);
+
+    return application;
   }
 
   async createApplication(
     createApplicationDto: CreateApplicationDto,
+    userId: ObjectId,
   ): Promise<Application> {
     const { jobId } = createApplicationDto;
 
     //Find the job user wants to apply to and make sure it exists
     const job = await this.jobModel.findById(jobId);
-    const jobs = await this.jobModel.find().exec();
-
-    console.log(jobs);
 
     if (!job) throw new NotFoundException(`Job with id ${jobId} not found!`);
 
     const createdApplication = new this.applicationModel(createApplicationDto);
-    createdApplication.userId = new ObjectId('5f62755729608a001c8d5a40');
+    createdApplication.userId = userId;
+    createdApplication.job = job;
     const savedApplication = await createdApplication.save();
-    this.natsClient.emit<string>('application_created', savedApplication);
     return savedApplication;
   }
 

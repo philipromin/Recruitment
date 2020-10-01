@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { ObjectId } from 'mongodb';
 
 @Schema({
   toJSON: {
@@ -14,13 +15,7 @@ export class Job extends Document {
   title: string;
 
   @Prop({ required: true })
-  description: string;
-
-  @Prop({ required: true })
-  recruiterId: number;
-
-  @Prop([String])
-  requirements: string[];
+  recruiterId: ObjectId;
 }
 
 export const JobSchema = SchemaFactory.createForClass(Job);

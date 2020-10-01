@@ -2,10 +2,7 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class NotificationsService {
-  notifyUserApplicationChange(data: number[]) {
+  notifyUserApplicationChange(data: any) {
     //Email user whose application has changed
-  }
-  emailNewUser(data: number[]) {
-    //Email new user here
   }
 }

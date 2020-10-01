@@ -6,14 +6,11 @@ import {
   Param,
   Patch,
   Post,
+  Req,
+  Request,
   ValidationPipe,
 } from '@nestjs/common';
-import {
-  Ctx,
-  MessagePattern,
-  NatsContext,
-  Payload,
-} from '@nestjs/microservices';
+import { MessagePattern, Payload } from '@nestjs/microservices';
 import { InjectModel } from '@nestjs/mongoose';
 import { ObjectId } from 'mongodb';
 import { Model } from 'mongoose';
@@ -22,6 +19,7 @@ import { CreateApplicationDto } from './dto/create-application.dto';
 import { ApplicationStatus } from './enums/application-status.enum';
 import { ApplicationStatusValidationPipe } from './pipes/ApplicationStatusValidationPipe';
 import { ParseObjectIdPipe } from './pipes/ParseObjectIdPipe';
+import { Application } from './schemas/application.schema';
 import { Job } from './schemas/job.schema';
 
 @Controller('/api/applications')
@@ -32,18 +30,26 @@ export class ApplicationsController {
   ) {}
 
   @Get()
-  getApplications(): string {
-    return this.applicationsService.getApplications();
+  getApplications(@Req() request: Request): Promise<Application[]> {
+    return this.applicationsService.getApplications(request.headers['user-id']);
   }
 
   @Get('/:id')
-  getApplicationById(@Param('id', ParseObjectIdPipe) id: ObjectId): string {
+  getApplicationById(
+    @Param('id', ParseObjectIdPipe) id: ObjectId,
+  ): Promise<Application> {
     return this.applicationsService.getApplicationById(id);
   }
 
   @Post()
-  createApplication(@Body(ValidationPipe) createJobDto: CreateApplicationDto) {
-    return this.applicationsService.createApplication(createJobDto);
+  createApplication(
+    @Body(ValidationPipe) createJobDto: CreateApplicationDto,
+    @Req() request: Request,
+  ) {
+    return this.applicationsService.createApplication(
+      createJobDto,
+      request.headers['user-id'],
+    );
   }
 
   @Patch('/:id/status')
@@ -60,7 +66,7 @@ export class ApplicationsController {
   }
 
   @MessagePattern('job_created')
-  async getNotifications(@Payload() data: any, @Ctx() context: NatsContext) {
+  async getNotifications(@Payload() data: any) {
     const createdJob = new this.jobModel(data);
     createdJob._id = data.id;
     await createdJob.save();
