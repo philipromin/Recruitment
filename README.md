@@ -1,3 +1,2 @@
-# Recruitment
-
-Application for bachelor's thesis, work in progress
+## Table of Contents 
+*[About the Project](#about)
