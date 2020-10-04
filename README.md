@@ -18,6 +18,7 @@ This is a case study application for my bachelor's thesis on microservice archit
 * MongoDB
 * Docker 
 * Kubernetes
+* Ingress-nginx
 
 ## Getting Started
 
