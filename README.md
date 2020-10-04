@@ -1,3 +1,5 @@
+** Work in Progress **
+
 ## Table of Contents 
 * [About the Project](#about)
  * [Built with](#built-with)
@@ -29,7 +31,8 @@ This is a case study application for my bachelor's thesis on microservice archit
 ```sh
 git clone https://github.com/philipromin/Recruitment.git
 ```
-2. Setup ingress-nginx
+2. Make sure Docker and Kubernetes are running.
+3. Setup ingress-nginx
 ```sh
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.40.1/deploy/static/provider/cloud/deploy.yaml
 ```
