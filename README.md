@@ -6,7 +6,6 @@
 * [Getting started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Setup](#setup)
-   * [Environment variables]()
 
 ## About
 
@@ -33,8 +32,14 @@ This is a case study application for my bachelor's thesis on microservice archit
 ```sh
 git clone https://github.com/philipromin/Recruitment.git
 ```
-2. Make sure Docker and Kubernetes are running.
+2. Make sure Docker and Kubernetes are running
 3. Setup ingress-nginx
 ```sh
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.40.1/deploy/static/provider/cloud/deploy.yaml
+```
+4. Setup environment variables
+5. Run skaffold
+```sh
+cd skaffold
+skaffold dev
 ```
