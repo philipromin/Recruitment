@@ -3,7 +3,8 @@
  * [Built with](#built-with)
 * [Getting started](#getting-started)
   * [Prerequisites](#prerequisites)
-  * [Installation](#installation)
+  * [Setup](#setup)
+   * [Environment variables]()
 
 ## About
 
@@ -19,8 +20,9 @@ This is a case study application for my bachelor's thesis on microservice archit
 ## Getting Started
 
 ### Prerequisites
-* Docker [docker.com](https://www.docker.com/)
-* Kubernetes (Comes with Docker Desktop)
-* Skaffold
+* Docker - available at [docker.com](https://www.docker.com/)
+* Kubernetes - available at [kubernetes.io](https://kubernetes.io/)
+* Skaffold - available at (skaffold.dev)(https://skaffold.dev/)
 
-### Installation
+### Setup
+
