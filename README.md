@@ -43,7 +43,7 @@ kubectl create secret generic jwt-secret --from-literal=JWT_KEY=xxxx
 kubectl create secret generic hotmail-username --from-literal=HOTMAIL_USERNAME=xxxx
 kubectl create secret generic hotmail-password --from-literal=HOTMAIL_PASS=xxxx
 ```
-5. Change the config files to your DockerID, i.e. replace phromin with your id.
+5. Change the config files to your DockerID, i.e. replace phromin with your id in the k8s and skaffold files
 6. Run skaffold
 ```sh
 cd skaffold
