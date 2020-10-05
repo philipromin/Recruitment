@@ -25,7 +25,7 @@ This is a case study application for my bachelor's thesis on microservice archit
 
 ### Prerequisites
 * Docker - available at [docker.com](https://www.docker.com/)
-* Kubernetes - available at [kubernetes.io](https://kubernetes.io/)
+* Kubernetes - available at [kubernetes.io](https://kubernetes.io/) (Skip this if you have Docker Desktop, you can turn on Kubernetes from settings instead)
 * Skaffold - available at [skaffold.dev](https://skaffold.dev/)
 
 ### Setup
