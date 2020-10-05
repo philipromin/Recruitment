@@ -37,7 +37,7 @@ git clone https://github.com/philipromin/Recruitment.git
 ```sh
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.40.1/deploy/static/provider/cloud/deploy.yaml
 ```
-4. Setup environment variables (secrets whithin Kubernetes)
+4. Setup environment variables (secrets within Kubernetes)
 ```sh
 kubectl create secret generic jwt-secret --from-literal=JWT_KEY=xxxx
 kubectl create secret generic hotmail-username --from-literal=HOTMAIL_USERNAME=xxxx
