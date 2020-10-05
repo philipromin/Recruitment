@@ -7,6 +7,6 @@ export class CreateJobDto {
   @IsNotEmpty()
   description: string;
 
-  @IsOptional()
+  @IsOptional({ each: true })
   requirements: Array<string>;
 }
