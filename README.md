@@ -2,8 +2,8 @@
 
 ## Table of Contents 
 * [About the Project](#about)
- * [Built with](#built-with)
-* [Getting started](#getting-started)
+ * [Built With](#built-with)
+* [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Setup](#setup)
   * [Development Environment](#development-environment)
@@ -52,7 +52,7 @@ kubectl create secret generic hotmail-password --from-literal=HOTMAIL_PASS=xxxx
 ```
 6. Change the config files to your DockerID, i.e. replace "phromin" with your own docker id in the k8s and skaffold files
 
-### Development environment
+### Development Environment
 Start local development by running Skaffold
 ```sh
 cd skaffold
