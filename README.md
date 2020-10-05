@@ -29,9 +29,14 @@ This is a case study application for my bachelor's thesis on microservice archit
 * Skaffold - available at [skaffold.dev](https://skaffold.dev/)
 
 ### Setup
-1. Clone the repo
+1. Clone the repo 
 ```sh
 git clone https://github.com/philipromin/Recruitment.git
+```
+2. cd into it and checkout dev 
+```sh
+cd Recruitment
+git checkout dev
 ```
 2. Make sure Docker and Kubernetes are running
 3. Setup ingress-nginx
