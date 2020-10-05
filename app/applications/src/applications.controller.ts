@@ -76,7 +76,7 @@ export class ApplicationsController {
   }
 
   @MessagePattern('job_created')
-  async getNotifications(@Payload() data: any) {
+  async saveJob(@Payload() data: any) {
     const createdJob = new this.jobModel(data);
     createdJob._id = data.id;
     await createdJob.save();
