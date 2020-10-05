@@ -6,6 +6,7 @@
 * [Getting started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Setup](#setup)
+  * [Development Environment](#development-environment)
 
 ## About
 
