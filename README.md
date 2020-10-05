@@ -15,6 +15,7 @@ This is a case study application for my bachelor's thesis on microservice archit
 * Node.js
 * NestJS
 * MongoDB
+* Next.js
 * NATS Streaming
 * Docker 
 * Kubernetes
