@@ -45,7 +45,9 @@ kubectl create secret generic hotmail-username --from-literal=HOTMAIL_USERNAME=x
 kubectl create secret generic hotmail-password --from-literal=HOTMAIL_PASS=xxxx
 ```
 5. Change the config files to your DockerID, i.e. replace "phromin" with your own docker id in the k8s and skaffold files
-6. Run skaffold
+
+### Development environment
+Start local development by running Skaffold
 ```sh
 cd skaffold
 skaffold dev
