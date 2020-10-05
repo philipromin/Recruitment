@@ -1,3 +1,4 @@
+import Router from 'next/router';
 import axios from 'axios';
 
 const JobPage = ({ job, currentUser }) => {
@@ -6,7 +7,7 @@ const JobPage = ({ job, currentUser }) => {
       const response = await axios.post('/api/applications', {
         jobId,
       });
-      console.log(response);
+      Router.push('/applications');
     } catch (error) {
       console.error(error);
     }

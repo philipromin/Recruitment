@@ -7,7 +7,7 @@ metadata:
     nginx.ingress.kubernetes.io/use-regex: 'true'
 spec:
   rules:
-    - host: recruitment.dev
+    - host: localhost
       http:
         paths:
           - path: /api/jobs
@@ -34,7 +34,7 @@ metadata:
     nginx.ingress.kubernetes.io/auth-response-headers: user-id, user-role
 spec:
   rules:
-    - host: recruitment.dev
+    - host: localhost
       http:
         paths:
           - path: /api/jobs/create

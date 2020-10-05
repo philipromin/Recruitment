@@ -1,4 +1,4 @@
-import { JobGallery } from 'components';
+import { JobGallery, RecruiterDashboard } from 'components';
 
 const JobsPage = ({ currentUser, jobs }) => {
   return <JobGallery jobs={jobs} currentUser={currentUser} />;
