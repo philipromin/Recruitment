@@ -44,7 +44,7 @@ git checkout dev
 ```sh
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.40.1/deploy/static/provider/cloud/deploy.yaml
 ```
-5. Setup environment variables (secrets within Kubernetes)
+5. Set environment variables (secrets within Kubernetes)
 ```sh
 kubectl create secret generic jwt-secret --from-literal=JWT_KEY=xxxx
 kubectl create secret generic hotmail-username --from-literal=HOTMAIL_USERNAME=xxxx
