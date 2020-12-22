@@ -62,6 +62,6 @@ skaffold dev
 
 ## Suggested reading
 For those interested in Kubernetes and running Kubernetes in production I'd suggest looking in to the following technologies
-* [Helm charts](https://helm.sh/) as a package manager
-* [Jenkins X](https://jenkins-x.io/) for CI/CD
-* [Istio](https://istio.io/) and the benefits a service mesh can bring
+* [Helm charts](https://helm.sh/) 
+* [Jenkins X](https://jenkins-x.io/) 
+* [Istio](https://istio.io/) 
