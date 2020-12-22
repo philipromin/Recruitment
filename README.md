@@ -7,7 +7,7 @@
   * [Prerequisites](#prerequisites)
   * [Setup](#setup)
   * [Development Environment](#development-environment)
-* [Suggested reading](#suggested-readin)
+* [Suggested reading](#suggested-reading)
 
 ## About
 
